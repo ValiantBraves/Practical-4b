@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #2: Changing colors</title>
+    <style>
+        #mydiv {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div id="mydiv"></div>
+
+<script>
+    window.onload = function() {
+        const myDiv = document.getElementById('mydiv');
+        let colors = ['#FF69B4', '#33CC33', '#6666FF', '#FFCC00', '#CC00CC']; // Add your colors here
+        let currentIndex = Math.floor(Math.random() * colors.length); // Choose initial color randomly
+
+        // Set initial color
+        myDiv.style.backgroundColor = colors[currentIndex];
+
+        // Add event listener for click
+        myDiv.addEventListener('click', () => {
+            // Move to next color
+            currentIndex = (currentIndex + 1) % colors.length;
+            myDiv.style.backgroundColor = colors[currentIndex];
+        });
+    }
+</script>
+</body>
+</html>
