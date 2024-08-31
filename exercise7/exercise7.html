@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #7: Simple playlist</title>
+    <link rel="stylesheet" href="exercise7.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to the input field and button
+            const songInput = document.getElementById('songTextInput');
+            const addButton = document.getElementById('addButton');
+            const playlist = document.getElementById('playlist');
+
+            // Function to add a song to the playlist
+            function addSong() {
+                // Get the song name from the input field
+                const songName = songInput.value.trim();
+
+                // Check if the song name is not empty
+                if (songName === '') {
+                    alert('Please enter a song name.');
+                    return;
+                }
+
+                // Create a new list item
+                const listItem = document.createElement('li');
+                listItem.textContent = songName;
+
+                // Add the new list item to the playlist
+                playlist.appendChild(listItem);
+
+                // Clear the input field
+                songInput.value = '';
+                songInput.focus(); // Focus back on the input field
+            }
+
+            // Add event listener to the button
+            addButton.addEventListener('click', addSong);
+
+            // Optionally, handle Enter key press for adding songs
+            songInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent form submission
+                    addSong();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<form>
+    <input type="text" id="songTextInput" size="40" placeholder="Song name">
+    <input type="button" id="addButton" value="Add Song">
+</form>
+
+<ul id="playlist">
+</ul>
+
+</body>
+</html>

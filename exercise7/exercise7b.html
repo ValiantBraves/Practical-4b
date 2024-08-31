@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise #7b: Advanced playlist</title>
+    <link rel="stylesheet" href="exercise7.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get references to the input field and button
+            const songInput = document.getElementById('songTextInput');
+            const addButton = document.getElementById('addButton');
+            const playlist = document.getElementById('playlist');
+
+            // Function to add a song to the playlist
+            function addSong() {
+                // Get the song name from the input field
+                const songName = songInput.value.trim();
+
+                // Check if the song name is not empty
+                if (songName === '') {
+                    alert('Please enter a song name.');
+                    return;
+                }
+
+                // Create a new list item
+                const listItem = document.createElement('li');
+
+                // Create a text node for the song name
+                const textNode = document.createTextNode(songName);
+
+                // Create a delete link
+                const deleteLink = document.createElement('a');
+                deleteLink.href = '#';
+                deleteLink.textContent = 'Delete';
+                deleteLink.style.color = 'red';
+                deleteLink.style.marginLeft = '10px';
+
+                // Append the text node and delete link to the list item
+                listItem.appendChild(textNode);
+                listItem.appendChild(deleteLink);
+
+                // Add the new list item to the playlist
+                playlist.appendChild(listItem);
+
+                // Clear the input field
+                songInput.value = '';
+                songInput.focus(); // Focus back on the input field
+            }
+
+            // Function to remove a song from the playlist
+            function removeSong(event) {
+                // Only handle clicks on delete links
+                if (event.target.tagName === 'A' && event.target.textContent === 'Delete') {
+                    event.preventDefault(); // Prevent default anchor behavior
+                    const listItem = event.target.parentElement;
+                    playlist.removeChild(listItem); // Remove the list item
+                }
+            }
+
+            // Add event listener to the button
+            addButton.addEventListener('click', addSong);
+
+            // Add event listener to the playlist to handle delete links
+            playlist.addEventListener('click', removeSong);
+
+            // Optionally, handle Enter key press for adding songs
+            songInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Prevent form submission
+                    addSong();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<form>
+    <input type="text" id="songTextInput" size="40" placeholder="Song name">
+    <input type="button" id="addButton" value="Add Song">
+</form>
+
+<ul id="playlist">
+</ul>
+
+</body>
+</html>
