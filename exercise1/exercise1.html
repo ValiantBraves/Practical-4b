@@ -18,5 +18,17 @@
 </head>
 <body>
 <div id="mydiv">Hello world</div>
+
+<script>
+    const myDiv = document.getElementById('mydiv');
+
+    myDiv.addEventListener('mouseover', () => {
+        myDiv.textContent = 'Can I help you?';
+    });
+
+    myDiv.addEventListener('mouseout', () => {
+        myDiv.textContent = 'Hello world!';
+    });
+</script>
 </body>
 </html>
