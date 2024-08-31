@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Selector</title>
+</head>
+<body>
+<select id="image-selector">
+    <option value="image.png">Select</option>
+    <option value="Afghanistan.png">Afghanistan</option>
+    <option value="Bangladesh.png">Bangladesh</option>
+    <option value="Bhutan.png">Bhutan</option>
+    <option value="China.png">China</option>
+    <option value="India.png">India</option>
+    <option value="Myanmar.png">Myanmar</option>
+    <option value="Nepal.png">Nepal</option>
+    <option value="Pakistan.png">Pakistan</option>
+    <option value="Sri_Lanka.png">Sri_Lanka</option>
+</select>
+<img id="selected-image" src="" alt="No image" />
+
+<script>
+    const imageSelector = document.getElementById('image-selector');
+    const selectedImage = document.getElementById('selected-image');
+
+    imageSelector.addEventListener('change', () => {
+        const selectedOption = imageSelector.options[imageSelector.selectedIndex];
+        selectedImage.src = selectedOption.value;
+        selectedImage.alt = selectedOption.text;
+    });
+</script>
+</body>
+</html>
